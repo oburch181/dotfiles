@@ -7,6 +7,8 @@
     micro
     uv
     cargo
+    tmux
+    gh
   ];
 
   # Manage Zsh so Home Manager can inject Nix paths automatically
