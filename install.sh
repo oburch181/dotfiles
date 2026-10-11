@@ -14,7 +14,7 @@ fi
 
 echo "=> Bootstrapping Home Manager..."
 # Runs Home Manager directly from the flake in your current directory
-nix run home-manager/master -- switch --flake .#orion@ubuntu-laptop
+nix run home-manager/master -- switch --flake .#orion@ubuntu
 
 echo "=> Setting Zsh as default shell..."
 sudo chsh -s $(which zsh) orion

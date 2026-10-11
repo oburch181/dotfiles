@@ -14,10 +14,10 @@
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
   in {
-    homeConfigurations."orion@ubuntu-laptop" = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations."orion@ubuntu" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       modules = [
-        ./hosts/ubuntu-laptop.nix
+        ./hosts/ubuntu.nix
       ];
     };
   };

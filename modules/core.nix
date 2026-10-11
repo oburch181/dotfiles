@@ -5,6 +5,8 @@
     wezterm
     starship
     micro
+    uv
+    cargo
   ];
 
   # Manage Zsh so Home Manager can inject Nix paths automatically
