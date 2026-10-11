@@ -9,6 +9,7 @@
     cargo
     tmux
     gh
+    eza
   ];
 
   # Manage Zsh so Home Manager can inject Nix paths automatically
@@ -17,6 +18,10 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    shellAliases = {
+      ls = "eza --icons --group-directories-first";
+      ll = "eza -al --icons --group-directories-first";
+    };
     initExtra = ''
       eval "$(starship init zsh)"
     '';
