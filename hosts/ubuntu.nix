@@ -3,6 +3,7 @@
 {
   imports = [
     ../modules/core.nix
+    ../modules/ai.nix
   ];
 
   home.username = "orion";

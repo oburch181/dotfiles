@@ -10,8 +10,11 @@
     tmux
     gh
     eza
+    nerd-fonts.jetbrains-mono
   ];
 
+  fonts.fontconfig.enable = true;
+  
   # Manage Zsh so Home Manager can inject Nix paths automatically
   programs.zsh = {
     enable = true;
