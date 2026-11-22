@@ -1,0 +1,10 @@
+# Nix result symlinks
+result
+result-*
+
+# Direnv
+.direnv/
+
+# OS specific
+.DS_Store
+Thumbs.db

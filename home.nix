@@ -8,10 +8,14 @@
   # Let Home Manager manage itself
   programs.home-manager.enable = true;
 
-  # Standalone CLI tools
+  # Enable font discovery for Nix-installed fonts
+  fonts.fontconfig.enable = true;
+
+  # Standalone CLI tools and fonts
   home.packages = with pkgs; [
     uv
     glow
+    nerd-fonts.jetbrains-mono
   ];
 
   # Shells (required so starship/fzf integrations inject into rc files)
@@ -21,9 +25,11 @@
   # Git
   programs.git = {
     enable = true;
-    userName = "orion"; # Update with your name
-    userEmail = "you@example.com"; # Update with your email
-    extraConfig = {
+    settings = {
+      user = {
+        name = "orion"; # Update with your name
+        email = "you@example.com"; # Update with your email
+      };
       init.defaultBranch = "main";
       pull.rebase = true;
     };
@@ -45,6 +51,32 @@
         };
       };
     };
+  };
+
+  # Micro text editor
+  programs.micro = {
+    enable = true;
+    settings = {
+      colorscheme = "darcula";
+      softwrap = true;
+    };
+  };
+
+  # WezTerm
+  programs.wezterm = {
+    enable = true;
+    extraConfig = ''
+      local wezterm = require 'wezterm'
+      local config = wezterm.config_builder()
+
+      config.color_scheme = 'Tokyo Night'
+      config.font = wezterm.font 'JetBrainsMono Nerd Font'
+      config.font_size = 13.0
+      config.hide_tab_bar_if_only_one_tab = true
+      config.window_decorations = "RESIZE"
+
+      return config
+    '';
   };
 
   # Tmux (escapeTime = 0 prevents Esc lag in Helix)
