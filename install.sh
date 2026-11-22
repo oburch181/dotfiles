@@ -29,7 +29,18 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 echo "Applying Home Manager configuration for '${TARGET}'..."
 nix run home-manager/master -- switch --flake "${SCRIPT_DIR}#${TARGET}" -b backup
 
-# 5. Install non-Nix packages
+# 5. Ensure zsh is set as the default shell if available
+ZSH_PATH="$(command -v zsh || true)"
+if [ -n "$ZSH_PATH" ] && [ "$SHELL" != "$ZSH_PATH" ]; then
+  echo "Setting zsh as default login shell..."
+  if grep -q "$ZSH_PATH" /etc/shells 2>/dev/null; then
+    chsh -s "$ZSH_PATH" || echo "Note: Could not automatically change default shell to zsh. You can run: chsh -s $ZSH_PATH"
+  else
+    echo "Note: $ZSH_PATH not found in /etc/shells. Skipping automatic chsh."
+  fi
+fi
+
+# 6. Install non-Nix packages
 if [ -x "${SCRIPT_DIR}/nonixpackages/install.sh" ]; then
   "${SCRIPT_DIR}/nonixpackages/install.sh"
 fi

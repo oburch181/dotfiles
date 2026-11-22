@@ -11,4 +11,12 @@ else
   echo "pi is already installed ($(pi --version)). Skipping."
 fi
 
+# Herdr (https://herdr.dev)
+if ! command -v herdr >/dev/null 2>&1; then
+  echo "Installing herdr..."
+  curl -fsSL https://herdr.dev/install.sh | sh
+else
+  echo "herdr is already installed. Skipping."
+fi
+
 echo "Non-Nix packages complete."

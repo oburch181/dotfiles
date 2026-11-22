@@ -8,6 +8,11 @@
   # Let Home Manager manage itself
   programs.home-manager.enable = true;
 
+  # Ensure ~/.local/bin is in PATH for non-Nix binaries (herdr, pi, etc.)
+  home.sessionPath = [
+    "$HOME/.local/bin"
+  ];
+
   # Enable font discovery for Nix-installed fonts
   fonts.fontconfig.enable = true;
 
@@ -15,6 +20,8 @@
   home.packages = with pkgs; [
     uv
     glow
+    nodejs
+    wezterm
     nerd-fonts.jetbrains-mono
   ];
 

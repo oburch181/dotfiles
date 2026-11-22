@@ -5,17 +5,20 @@ A cross-platform developer environment configuration managed by **Nix Flakes** a
 ## 🚀 Included Tools & Configuration
 
 - **Package Management**: [Nix Flakes](https://nixos.wiki/wiki/Flakes) + [Home Manager](https://github.com/nix-community/home-manager)
-- **Shells**: Zsh & Bash configured with [Starship prompt](https://starship.rs/) and [Fzf](https://github.com/junegunn/fzf) (fuzzy finder).
+- **Shells**: Zsh (set as default login shell) & Bash configured with [Starship prompt](https://starship.rs/) and [Fzf](https://github.com/junegunn/fzf).
 - **Editors**:
   - [Helix](https://helix-editor.com/) (default editor with Tokyo Night theme and relative line numbers).
   - [Micro](https://github.com/zyedidia/micro) (modern terminal text editor).
 - **Terminal & Multiplexer**:
-  - [WezTerm](https://wezfurlong.org/wezterm/) (GPU-accelerated terminal emulator with JetBrainsMono Nerd Font).
+  - [WezTerm](https://wezfurlong.org/wezterm/) (GPU-accelerated terminal emulator installed via Nix and configured with Tokyo Night & JetBrainsMono Nerd Font).
   - [Tmux](https://github.com/tmux/tmux) (terminal multiplexer optimized with zero escape delay for editing).
-- **CLI Utilities**:
-  - `uv` (extremely fast Python package installer and resolver).
+- **Languages & Runtimes**:
+  - `nodejs` (Node.js runtime, required for `pi`).
+- **CLI Utilities & AI Tools**:
+  - `uv` (fast Python package installer/resolver).
   - `glow` (Markdown renderer for the terminal).
   - `pi` (Pi coding agent harness).
+  - `herdr` (terminal workspace manager for AI coding agents, installed via `nonixpackages/`).
 - **Git**: Pre-configured with default branch `main` and rebase on pull.
 
 ---
