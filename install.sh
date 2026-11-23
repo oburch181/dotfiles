@@ -29,11 +29,21 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 echo "Applying Home Manager configuration for '${TARGET}'..."
 nix run home-manager/master -- switch --flake "${SCRIPT_DIR}#${TARGET}" -b backup
 
-# 5. Ensure zsh is set as the default shell if available
+# 5. Ensure zsh (including Nix-installed zsh) is set as the default shell if available
 ZSH_PATH="$(command -v zsh || true)"
+if [ -z "$ZSH_PATH" ] && [ -x "$HOME/.nix-profile/bin/zsh" ]; then
+  ZSH_PATH="$HOME/.nix-profile/bin/zsh"
+fi
+
 if [ -n "$ZSH_PATH" ] && [ "$SHELL" != "$ZSH_PATH" ]; then
-  echo "Setting zsh as default login shell..."
-  if grep -q "$ZSH_PATH" /etc/shells 2>/dev/null; then
+  echo "Setting zsh as default login shell ($ZSH_PATH)..."
+  # Add to /etc/shells if not already present
+  if ! grep -qxF "$ZSH_PATH" /etc/shells 2>/dev/null; then
+    echo "Adding $ZSH_PATH to /etc/shells (requires sudo)..."
+    echo "$ZSH_PATH" | sudo tee -a /etc/shells >/dev/null || echo "Note: Could not add $ZSH_PATH to /etc/shells."
+  fi
+
+  if grep -qxF "$ZSH_PATH" /etc/shells 2>/dev/null; then
     chsh -s "$ZSH_PATH" || echo "Note: Could not automatically change default shell to zsh. You can run: chsh -s $ZSH_PATH"
   else
     echo "Note: $ZSH_PATH not found in /etc/shells. Skipping automatic chsh."

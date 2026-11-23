@@ -11,6 +11,12 @@ else
   echo "pi is already installed ($(pi --version)). Skipping."
 fi
 
+# Ensure ~/.local/bin is in PATH for the current session so pi (and other tools) can be used immediately
+case ":$PATH:" in
+  *":$HOME/.local/bin:"*) ;;
+  *) export PATH="$HOME/.local/bin:$PATH" ;;
+esac
+
 # Herdr (https://herdr.dev)
 if ! command -v herdr >/dev/null 2>&1; then
   echo "Installing herdr..."
