@@ -22,6 +22,7 @@
     glow
     nodejs
     wezterm
+    cmake
     nerd-fonts.jetbrains-mono
   ];
 
