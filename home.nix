@@ -26,7 +26,10 @@
   ];
 
   # Shells (required so starship/fzf integrations inject into rc files)
-  programs.zsh.enable = true;
+  programs.zsh = {
+    enable = true;
+    syntaxHighlighting.enable = true;
+  };
   programs.bash.enable = true;
 
   # Git
@@ -77,10 +80,10 @@
       local config = wezterm.config_builder()
 
       config.color_scheme = 'Tokyo Night'
-      config.font = wezterm.font 'JetBrainsMono'
+      config.font = wezterm.font 'JetBrains Mono'
       config.font_size = 13.0
       config.hide_tab_bar_if_only_one_tab = true
-      config.window_decorations = "RESIZE"
+      config.window_decorations = "TITLE | RESIZE"
 
       return config
     '';
