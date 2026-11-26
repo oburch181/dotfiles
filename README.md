@@ -18,7 +18,7 @@ A cross-platform developer environment configuration managed by **Nix Flakes** a
 - **CLI Utilities & AI Tools**:
   - `uv` (fast Python package installer/resolver).
   - `glow` (Markdown renderer for the terminal).
-  - `pi` (Pi coding agent harness).
+  - `pi` (Pi coding agent harness, configured with `pi-web-access` and `pi-subagents` extensions).
   - `herdr` (terminal workspace manager for AI coding agents, installed via `nonixpackages/`).
 - **Git**: Pre-configured with default branch `main` and rebase on pull.
 

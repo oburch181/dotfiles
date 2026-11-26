@@ -17,6 +17,19 @@ case ":$PATH:" in
   *) export PATH="$HOME/.local/bin:$PATH" ;;
 esac
 
+# Pi extensions
+if command -v pi >/dev/null 2>&1; then
+  PI_INSTALLED="$(pi list 2>/dev/null || true)"
+  for pkg in "npm:pi-web-access" "npm:pi-subagents"; do
+    if printf '%s\n' "$PI_INSTALLED" | grep -qF "$pkg"; then
+      echo "pi extension $pkg is already installed. Skipping."
+    else
+      echo "Installing pi extension $pkg..."
+      pi install "$pkg"
+    fi
+  done
+fi
+
 # Herdr (https://herdr.dev)
 if ! command -v herdr >/dev/null 2>&1; then
   echo "Installing herdr..."
