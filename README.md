@@ -13,7 +13,8 @@ A cross-platform developer environment configuration managed by **Nix Flakes** a
   - [WezTerm](https://wezfurlong.org/wezterm/) (GPU-accelerated terminal emulator installed via Nix and configured with Tokyo Night & JetBrainsMono Nerd Font).
   - [Tmux](https://github.com/tmux/tmux) (terminal multiplexer optimized with zero escape delay for editing).
 - **Languages & Runtimes**:
-  - `nodejs` (Node.js runtime, required for `pi`).
+  - `nodejs` (Node.js runtime with `npm`, required for `pi`).
+  - `bun` (JavaScript and TypeScript runtime, bundler, and package manager).
 - **CLI Utilities & AI Tools**:
   - `uv` (fast Python package installer/resolver).
   - `glow` (Markdown renderer for the terminal).

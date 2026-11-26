@@ -21,6 +21,7 @@
     uv
     glow
     nodejs
+    bun
     wezterm
     cmake
     nerd-fonts.jetbrains-mono
